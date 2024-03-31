@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZ Docs</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>EZ-DOCS</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <div class="nav__bar">
+          <div class="logo">
+            <a href="#"><img src="./images/EZDOCS.png" alt="logo" /></a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#service">Docs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="btn nav__btn">Login</button>
+      </nav>
+      <div class="section__container header__container" id="home">
+        <p>Simple - Unique - Friendly</p>
+        <h1>Best Place to write<br />and store your<span> Docs</span>.</h1>
+      </div>
+    </header>
+
+
+    <section class="section__container about__container" id="about">
+      <div class="about__image">
+        <img src="./images/docs.png" alt="about" />
+      </div>
+      <div class="about__content">
+        <p class="section__subheader">ABOUT US</p>
+        <h2 class="section__header">The Best Docs Website Available!</h2>
+        <p class="section__description">
+          EZDocs is an online docs application where you can create
+          docs and collaborate with your friends and collegues.
+          An integrated chat option so that you can connect with your 
+          partners and have a connection while collaborating.
+        </p>
+      </div>
+    </section>
+
+
+    <footer class="footer" id="contact">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <div class="logo">
+            <a href="#home"><img src="./images/EZDOCS.png" alt="logo" /></a>
+          </div>
+          <p class="section__description">
+            EZDocs is an online docs application where you can create
+            docs and collaborate with your friends and collegues.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>CONTACT US</h4>
+          <ul class="footer__links">
+            <li><a href="#"><img src="assets/facebook.png" alt="facebook" /></a></li>
+            <li><a href="#"><img src="assets/instagram.png" alt="instagram" /></a></li>
+            <li><a href="#"><img src="assets/youtube.png" alt="youtube" /></a></li>
+            <li><a href="#"><img src="assets/twitter.png" alt="twitter" /></a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>OUR SERVICES</h4>
+          <ul class="footer__links">
+            <li><a href="#">Document Creation</a></li>
+            <li><a href="#">Collaborate on Documents</a></li>
+            <li><a href="#">Chat while creating Documents</a></li>
+          </ul>
+        </div>
+        <!-- <div class="footer__col">
+          <h4>CONTACT US</h4>
+          <ul class="footer__links">
+            <li><a href="#">ezdocs@info.com</a></li>
+          </ul>
+        </div> -->
+      </div>
+      <div class="footer__bar">
+        Copyright © 2023 EZ-DOCS. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="./main.js"></script>
+  </body>
 </html>
