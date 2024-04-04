@@ -1,4 +1,4 @@
-const socket = io("http://localhost:4500", { transports: ["websocket"] });
+const socket = io("https://interface-ideaal-2345.onrender.com", { transports: ["websocket"] });
 const quill = new Quill("#editor", {
   modules: {
     syntax: true,
@@ -122,7 +122,7 @@ async function saveCode() {
     };
     console.log(obj);
 
-    const res = await fetch("https://localhost:8000/docs", {
+    const res = await fetch("https://interface-ideaal-2345.onrender.com/docs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
