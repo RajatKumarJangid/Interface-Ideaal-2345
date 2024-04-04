@@ -62,87 +62,87 @@
       </span>
     </div>
     <div id="fileName" style="display: flex;">
-      <input id="saveAs" type="text", placeholder="Enter your file name">
+      <input id="saveAs" type="text" , placeholder="Enter your file name">
       <button id="saveBtn">Save</button>
       <button id="homePage">Home</button>
       <button id="docsPage">Docs</button>
       <button id="chatApp">Chat</button>
     </div>
     <div id="editor">
-      
+
     </div>
     <!-- chat -->
     <div>
-      <button id="openChat" onclick="togglePopup()">Chat</button>
+      <button id="openChat" onclick="togglePopup()" >Chat</button>
       <div id="popup" class="popup">
-          <button id="closeChat" onclick="togglePopup()">×</button>
-          <div id="chat"></div>
-          <div class="input">
-              <input id="message" type="text" placeholder="Enter Message">
-              <button id="button" onclick="sendMessage()">Send</button>
-          </div>
+        <button id="closeChat"  onclick="togglePopup()">×</button>
+        <div id="chat"></div>
+        <div class="input">
+          <input id="message" type="text" placeholder="Enter Message">
+          <button id="button" >Send</button>
+        </div>
       </div>
-  
+
     </div>
-    
+
     <div class="cursor" id="cursor"></div>
   </div>
 
-  
+
 </body>
 
-<script>
+ <script>
   let popup = document.getElementById('popup');
 
   function togglePopup() {
       popup.classList.toggle('active');
   }
 
-  const ws = new WebSocket('ws://localhost:8080');
+  // const ws = new WebSocket('ws://localhost:4500');
 
-  ws.addEventListener("message", (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === "message") {
-          addMessage(data.user, data.message);
-      }
-  });
+  // ws.addEventListener("message", (event) => {
+  //     const data = JSON.parse(event.data);
+  //     if (data.type === "message") {
+  //         addMessage(data.user, data.message);
+  //     }
+  // });
 
-  function sendMessage() {
-      const message = document.getElementById("message").value;
-      if (!message) {
-          return false;
-      }
-      ws.send(JSON.stringify({ type: "message", user: "User 1", message: message }));
-      addMessage("User 1", message, true);
-      document.getElementById("message").value = "";
-  }
+  // function sendMessage() {
+  //     const message = document.getElementById("message").value;
+  //     if (!message) {
+  //         return false;
+  //     }
+  //     ws.send(JSON.stringify({ type: "message", user: "User 1", message: message }));
+  //     addMessage("User 1", message, true);
+  //     document.getElementById("message").value = "";
+  // }
 
-  function addMessage(user, message, sent) {
-      const node = document.createElement("p");
-      const text = document.createTextNode(message);
+  // function addMessage(user, message, sent) {
+  //     const node = document.createElement("p");
+  //     const text = document.createTextNode(message);
 
-      node.appendChild(text);
-      node.classList.add("message");
+  //     node.appendChild(text);
+  //     node.classList.add("message");
 
-      if (sent) {
-          node.classList.add("sent");
-      } else {
-          node.classList.add("received");
-      }
+  //     if (sent) {
+  //         node.classList.add("sent");
+  //     } else {
+  //         node.classList.add("received");
+  //     }
 
-      document.getElementById("chat").appendChild(node);
-  }
+  //     document.getElementById("chat").appendChild(node);
+  // }
 
-  document.getElementById("message").addEventListener("keypress", function(event) {
+  // document.getElementById("message").addEventListener("keypress", function(event) {
 
-    if (event.keyCode === 13) {
+  //   if (event.keyCode === 13) {
       
-          event.preventDefault();
+  //         event.preventDefault();
           
-          sendMessage();
-      }
-  });
-</script>
+  //         sendMessage();
+  //     }
+  // });
+</script>  
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
   integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
 <script src="./note.js"></script>
