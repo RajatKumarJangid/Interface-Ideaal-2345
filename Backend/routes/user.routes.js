@@ -1,98 +1,104 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const {UserModel} = require("../models/users.model");
-const {BlackTokenModel} = require("../models/blacklist.model")
+const { UserModel } = require("../models/users.model");
+const { BlackTokenModel } = require("../models/blacklist.model");
 require("dotenv").config();
 
 const userRouter = express.Router();
 
-userRouter.post('/register', async(req,res) =>{
-    const {userName,email,pass} =req.body;
-    try{
-        const exUser =await UserModel.findOne({email})
-        if(exUser){
-            return res.status(400).send({msg:'user is already registered,Kindly Login'})
-
-        }
-        bcrypt.hash(pass,8,async(err,hash) =>{
-            if(hash){
-                const user =new UserModel({userName,email,pass:hash})
-                await user.save()
-                return  res.status(200).send({
-                    msg:'new user has benn register', user:userName
-                })
-            }else{
-                console.log(err)
-                return res.status(404).send({
-                    msg:'error in password hashing process',err:err
-                })
-            }
-        })
-
-    }catch(err){
-        console.log(err)
-        res.status(404).send({msg:"error in user registration",err})
+userRouter.post("/register", async (req, res) => {
+  const { userName, email, pass } = req.body;
+  try {
+    const exUser = await UserModel.findOne({ email });
+    if (exUser) {
+      return res
+        .status(400)
+        .send({ msg: "user is already registered,Kindly Login" });
     }
-})
-
-
-userRouter.post('/login', async(req,res) =>{
-    const {email,pass} =req.body
-    try{
-
-        if (!email || !pass) {
-            return res.status(400).json({ error: "Email and password are required." });
-        }
-        const user =await UserModel.findOne({email})
-        if(!user){
-            return res.status(400).send({msg:'user not found'})
-         }
-        bcrypt.compare(pass,user.pass, (err,result) =>{
-            if(result){
-                const token = jwt.sign({userId:user._id,author:user.userName},process.env.tokenSecretKey,{expiresIn:'7d'})
-                res.status(200).send({
-                    msg:'login successfully',token,username: user.userName,userId:user._id
-                })
-            }else{
-                return res.status(401).send({
-                     error: "Wrong password." 
-                });
-            }
-        })
-
-    }catch(err){
+    bcrypt.hash(pass, 8, async (err, hash) => {
+      if (hash) {
+        const user = new UserModel({ userName, email, pass: hash });
+        await user.save();
+        return res.status(200).send({
+          msg: "new user has benn register",
+          user: userName,
+        });
+      } else {
         console.log(err);
-        res.status(404).send({
-            msg:"error in user login",errors:err
-        })
+        return res.status(404).send({
+          msg: "error in password hashing process",
+          err: err,
+        });
+      }
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(404).send({ msg: "error in user registration", err });
+  }
+});
 
+userRouter.post("/login", async (req, res) => {
+  const { email, pass } = req.body;
+  try {
+    if (!email || !pass) {
+      return res
+        .status(400)
+        .json({ error: "Email and password are required." });
     }
-})
-
-
-userRouter.get('/logout', async(req,res) =>{
-    try{
-        const token =req.headers.authorization?.split(' ')[1];
-
-        if(token){
-            const blacktoken =new BlackTokenModel({blackToken:token})
-            await blacktoken.save();
-
-            res.status(200).send({
-                msg:'user log out successfully'
-            })
-        }
-
-    }catch(err){
-        res.status(404).send({
-            msg:'error in user logout',Errors:err
-        })
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(400).send({ msg: "user not found" });
     }
-})
+    bcrypt.compare(pass, user.pass, (err, result) => {
+      if (result) {
+        const token = jwt.sign(
+          { userId: user._id, author: user.userName },
+          process.env.tokenSecretKey,
+          { expiresIn: "7d" }
+        );
+        res.status(200).send({
+          msg: "login successfully",
+          token,
+          username: user.userName,
+          userId: user._id,
+        });
+      } else {
+        return res.status(401).send({
+          error: "Wrong password.",
+        });
+      }
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(404).send({
+      msg: "error in user login",
+      errors: err,
+    });
+  }
+});
 
+userRouter.get("/logout", async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1];
 
+    if (token) {
+      const blacktoken = new BlackTokenModel({ blackToken: token });
+      await blacktoken.save();
+
+      res.status(200).send({
+        msg: "user log out successfully",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(404).send({
+      msg: "error in user logout",
+      Errors: err,
+    });
+  }
+});
 
 module.exports = {
-    userRouter
-}
+  userRouter,
+};
