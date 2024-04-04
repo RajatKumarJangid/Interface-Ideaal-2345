@@ -21,6 +21,10 @@ io.on("connection", (socket) => {
     // console.log(delta);
     socket.broadcast.emit("receive-changes", delta);
   });
+  
+  socket.on("send-cursor", (cursorData) => {
+    socket.broadcast.emit("receive-cursor", cursorData);
+});
 
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);

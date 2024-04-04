@@ -29,11 +29,21 @@ body {
   justify-content: center;
 }
 
-.ql-toolbar  {
+.ql-toolbar {
   display: flex;
   justify-content: center;
   position: sticky;
   top: 0;
   z-index: 1;
   background: #f3f3f3;
+}
+
+.cursor {
+  position: absolute;
+  margin-top: 42px;
+  margin-left: 14px;
+  background-color: #00f;
+  width: 2px;
+  height: 2%; /* Adjust the height as needed */
+  pointer-events: none;
 }

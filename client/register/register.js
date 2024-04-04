@@ -64,8 +64,8 @@ signUpBtn.addEventListener("click", async (e) => {
     });
 
     if (res.ok) {
-      showMessage(signUpMessageWrapper, data.message, "green");
       const data = await res.json();
+      showMessage(signUpMessageWrapper, data.message, "green");
     } else {
       const err = await res.json();
       showMessage(
@@ -103,13 +103,18 @@ signIn.addEventListener("click", async (e) => {
       body: JSON.stringify(reqData),
     });
     if (res.ok) {
-      showMessage(signUpMessageWrapper, data.message, "green");
       const data = await res.json();
+      console.log(data);
+      showMessage(signInpMessageWrapper, "Login successful", "green");
+      setTimeout(() => {
+        window.location.href = "../createNote.html";
+      }, 3000);
     } else {
       const err = await res.json();
+      console.log(err);
       showMessage(
-        signUpMessageWrapper,
-        err.message || "An error occurred.",
+        signInpMessageWrapper,
+        err.message || "Wrong password or email please check again",
         "red"
       );
     }
