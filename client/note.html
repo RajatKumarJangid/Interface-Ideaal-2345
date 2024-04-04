@@ -97,56 +97,7 @@
   function togglePopup() {
       popup.classList.toggle('active');
   }
-<<<<<<< HEAD
-
-  const ws = new WebSocket('ws://localhost:8080');
-
-  ws.addEventListener("message", (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === "message") {
-          addMessage(data.user, data.message);
-      }
-  });
-
-  function sendMessage() {
-      const message = document.getElementById("message").value;
-      if (!message) {
-          return false;
-      }
-      ws.send(JSON.stringify({ type: "message", user: "User 1", message: message }));
-      addMessage("User 1", message, true);
-      document.getElementById("message").value = "";
-  }
-
-  function addMessage(user, message, sent) {
-      const node = document.createElement("p");
-      const text = document.createTextNode(message);
-
-      node.appendChild(text);
-      node.classList.add("message");
-
-      if (sent) {
-          node.classList.add("sent");
-      } else {
-          node.classList.add("received");
-      }
-
-      document.getElementById("chat").appendChild(node);
-  }
-
-  document.getElementById("message").addEventListener("keypress", function(event) {
-    
-    if (event.keyCode === 13) {
-      
-          event.preventDefault();
-          
-          sendMessage();
-      }
-  });
-</script>
-=======
 </script>  
->>>>>>> 392e77953dc1168bace8091ce4be4fede20e9736
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
   integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
 <script src="./note.js"></script>
