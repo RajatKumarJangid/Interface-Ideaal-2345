@@ -73,7 +73,7 @@ socket.on("receive-changes", (delta) => {
 const msgInput = document.getElementById("message");
 const sendBtn = document.getElementById("button");
 
-let saveBtn = document.getElementById("save-btn");
+let saveBtn = document.getElementById("saveBtn");
 let saveAs = document.getElementById("saveAs");
 let editor = document.getElementById("editor");
 
@@ -137,4 +137,6 @@ async function saveCode() {
   }
 }
 
-// saveBtn.addEventListener("click", saveCode);
+saveBtn.addEventListener("click", () => {
+  console.log("quill: ", content);
+});
