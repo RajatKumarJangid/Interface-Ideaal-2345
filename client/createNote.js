@@ -1,19 +1,3 @@
-// var titleArr = JSON.parse(title)
-// var textArr = JSON.parse(text)
-
-// card.innerHTML = card.innerHTML +  `
-
-// <div class="card" style="width: 18rem;">
-//     <div class="card-body">
-//         <h5 class="card-title" id="cardtitle">${title}</h5>
-//         <p class="card-text" id="cardcontent">${text}</p>
-//         <a href="#" class="card-link">Card link</a>
-//     </div>
-// </div>
-
-// `
-
-// let html
 
 showDocs();
 
@@ -60,12 +44,6 @@ function showDocs() {
         </div>
         `;
   });
-
-  // if (titleArr.length!=0 && textArr.length!=0) {
-  //     card.innerHTML = html
-  // } else {
-  //     card.innerHTML = `<h1>No Notes Yet</h1>`
-  // }
 
   if (
     localStorage.getItem("title") != null &&
@@ -118,3 +96,4 @@ function deleteNote(index) {
 
   showDocs();
 }
+
