@@ -4,7 +4,6 @@ const socket = require("socket.io");
 const http = require("http");
 const {connection} = require("./config/db");
 const {userRouter} = require("./routes/user.routes");
-const {docRouter} = require('./routes/docs.routes');
 require("dotenv").config();
 
 const app = express();
@@ -37,8 +36,7 @@ io.on("connection", (socket) => {
   
 app.use(express.json());
 app.use(cors());
-app.use("/users", userRouter);
-app.use("/docs", docRouter);
+app.use("/users", userRouter)
 
 
 app.get('/',(req,res) =>{
