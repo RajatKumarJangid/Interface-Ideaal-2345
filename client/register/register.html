@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In/Sign Up</title>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./register.css">
 </head>
+
 <body>
     <div class="container right-panel-active">
 
@@ -13,10 +16,11 @@
         <div class="container__form container--signup">
             <form action="#" class="form" id="form1">
                 <h2 class="form__title">Sign Up</h2>
-                <input type="text" placeholder="user" class="input">
-                <input type="text" placeholder="email" class="input">
-                <input type="text" placeholder="password" class="input">
-                <button class="btn">Sign Up</button>
+                <input type="text" placeholder="user" class="input" id="signUpUserName">
+                <input type="text" placeholder="email" class="input" id="signUpEmail">
+                <input type="text" placeholder="password" class="input" id="signUpPassword">
+                <button class="btn" id="signUpBtn">Sign Up</button>
+                <div id="signUpMessageWrapper" class="message-wrapper"></div>
             </form>
         </div>
 
@@ -24,9 +28,9 @@
         <div class="container__form container--signin">
             <form action="#" class="form" id="form2">
                 <h2 class="form__title">Sign In</h2>
-                <input type="email" placeholder="email" class="input">
-                <input type="password" placeholder="password" class="input">
-                <button class="btn">Sign In</button>
+                <input type="email" placeholder="email" class="input" id="signInEmail">
+                <input type="password" placeholder="password" class="input" id="signInPass">
+                <button class="btn" id="signInBtn">Sign In</button>
             </form>
         </div>
 
@@ -42,7 +46,8 @@
         </div>
 
     </div>
-    
+
 </body>
 <script src="./register.js"></script>
+
 </html>
