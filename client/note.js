@@ -13,12 +13,14 @@ quill.on("text-change", (delta, oldDelta, source) => {
   socket.emit("send-changes", delta);
 });
 
+// socket.on("receive-changes", (delta) => {
+//   quill.updateContents(delta);
+// });
+
+
 const cursor = document.getElementById("cursor");
 cursor.style.display = "none";
 
-socket.on("receive-changes", (delta) => {
-  quill.updateContents(delta);
-});
 
 quill.on("selection-change", (range, oldRange, source) => {
   if (range) {
@@ -47,7 +49,7 @@ socket.on("receive-cursor", (cursorData) => {
     const newCursor = cursor.cloneNode();
     newCursor.id = cursorData.id;
     newCursor.style.position = "absolute";
-    newCursor.style.marginTop = "42px";
+    newCursor.style.marginTop = "110px";
     newCursor.style.marginLeft = "14px";
     newCursor.style.background = "red";
     newCursor.style.width = "2px";
