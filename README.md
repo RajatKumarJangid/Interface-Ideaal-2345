@@ -7,19 +7,19 @@ EZDocs is an online docs application where you can create docs and collaborate w
 Fullstack
 
 ## Deplolyed App
-Frontend: [https://interface-ideal-2345.netlify.app/]
-Backend: [https://interface-ideaal-2345.onrender.com]
+- Frontend: [https://interface-ideal-2345.netlify.app/]
+- Backend: [https://interface-ideaal-2345.onrender.com]
 
 ## Directory Structure
-├─ Backend/
-├─ client/
-│- server/
+- ├─ Backend/
+- ├─ client/
+- ├─ server/
 
 ## Video Walkthrough of the project
-[https://drive.google.com/file/d/1uGs3oyRkSWipEnwbEbhK7i111IaV11BW/view?usp=drive_link]
+- [https://drive.google.com/file/d/1uGs3oyRkSWipEnwbEbhK7i111IaV11BW/view?usp=drive_link]
 
 ## Video Walkthrough of the codebase
-Attach a very short video walkthough of codebase [ 1 - 5 minutes ]
+- Attach a very short video walkthough of codebase [ 1 - 5 minutes ]
 
 ## Features
 
@@ -54,12 +54,12 @@ Email :- rj3@gmail.com , Password :- rj3
 
 ## API Endpoints
 
-POST /api/users/register - create a new user.
-POST /api/users/login - login a user.
-POST /api/docs/ - create a new document.
-GET /api/docs/ - retreive all documents.
-PATCH /api/docs/:id - update a document.
-DELETE /api/docs/:id - delete a document.
+- POST /api/users/register - create a new user.
+- POST /api/users/login - login a user.
+- POST /api/docs/ - create a new document.
+- GET /api/docs/ - retreive all documents.
+- PATCH /api/docs/:id - update a document.
+- DELETE /api/docs/:id - delete a document.
 
 
 ## Technology Stack
