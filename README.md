@@ -4,7 +4,7 @@
 <img src="https://github.com/RajatKumarJangid/Interface-Ideaal-2345/blob/main/client/images/EZDocsHomePage.PNG" alt="Home page image"></img>
 
 ## Introduction
-EZDocs is an online docs application where you can create docs and collaborate with your friends and collegues.
+EZDocs is an online docs application where you can create docs and collaborate with your friends and collegues. An integrated chat option so that you can connect with your partners and have a connection while collaborating.
 
 ## Project Type
 Fullstack
@@ -15,7 +15,17 @@ Fullstack
 
 ## Directory Structure
 - ├─ Backend/
+    - models
+    - middlewares
+    - routes
+    - config
+    - index(backend)
 - ├─ client/
+    - images
+    - register
+    - note
+    - createNote
+    - index(frontend)
 - ├─ server/
 
 ## Video Walkthrough of the project
