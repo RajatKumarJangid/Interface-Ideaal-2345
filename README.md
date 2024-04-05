@@ -1,5 +1,8 @@
 # Project Title - EZDocs
 
+### Home Page
+<img src="https://github.com/RajatKumarJangid/Interface-Ideaal-2345/blob/main/client/images/EZDocsHomePage.PNG" alt="Home page image"></img>
+
 ## Introduction
 EZDocs is an online docs application where you can create docs and collaborate with your friends and collegues.
 
