@@ -1,9 +1,12 @@
+body {
+    background-color: #44A4E0;
+}
+
 #new-page {
     display: flex;
     flex-direction: column;
     height: 40vh;
-    /* background-color: rgb(246, 246, 229); */
-    background-color: rgb(216, 213, 213);
+    background-color: #44A4E0;
 }
 
 .heading {
