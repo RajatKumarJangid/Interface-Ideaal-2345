@@ -151,7 +151,7 @@ async function saveCode() {
       content: quill.root.innerHTML, // Get Quill editor content
     };
 
-    const res = await fetch("http://localhost:4500/docs", {
+    const res = await fetch("https://interface-ideaal-2345.onrender.com/docs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -169,7 +169,7 @@ async function saveCode() {
 const noteId = localStorage.getItem("noteId");
 
 if (noteId) {
-  fetch(`http://localhost:4500/docs/${noteId}`)
+  fetch(`https://interface-ideaal-2345.onrender.com/docs/${noteId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
