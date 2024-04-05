@@ -1,4 +1,4 @@
-const socket = io("http://localhost:4500", { transports: ["websocket"] });
+const socket = io("https://interface-ideaal-2345.onrender.com", { transports: ["websocket"] });
 const quill = new Quill("#editor", {
   modules: {
     syntax: true,
