@@ -1,65 +1,51 @@
 
 showDocs();
 
-function showDocs() {
-  var card = document.getElementById("card");
+async function showDocs() {
+  const card = document.getElementById("note-block");
 
-  if (
-    localStorage.getItem("title") == null &&
-    localStorage.getItem("text") == null
-  ) {
-    var titleArr = [];
-    var textArr = [];
-  } else if (
-    localStorage.getItem("title") == null &&
-    localStorage.getItem("text") != null
-  ) {
-    var titleArr = [];
-    var textArr = localStorage.getItem("text").split(",");
-  } else if (
-    localStorage.getItem("title") != null &&
-    localStorage.getItem("text") == null
-  ) {
-    var titleArr = localStorage.getItem("title").split(",");
-    var textArr = [];
-  } else {
-    var titleArr = localStorage.getItem("title").split(",");
-    var textArr = localStorage.getItem("text").split(",");
-  }
+  try {
+    const response = await fetch("http://localhost:4500/docs");
+    const data = await response.json();
 
-  let html = ``;
+    if (data.doc.length === 0) {
+      card.innerHTML = `<h1>No Notes Yet!</h1>`;
+      return;
+    }
 
-  titleArr.forEach((element1, index) => {
-    let element2 = textArr[index];
-    let new_element2 = element2.replaceAll(" ", "_");
+    let html = "";
 
-    html += `
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title" id="cardtitle">${element1}</h5>
-                <p class="card-text" id="cardcontent">${element2}</p>
-                <a href="/newOpen.html" onclick="openPage(this.id)" target="_blank" id=${new_element2} class="card-link">Open ${element1}</a>
-                <button type="button" onclick="deleteNote(this.id)" id=${index} class="dltBtn" class="btn-position btn btn-primary">Delete</button>
-            </div>
+    data.doc.forEach((note) => {
+      const { _id, title, content } = note;
+      html += `
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">${title}</h5>
+            <p class="card-text">${content}</p>
+            <a href="#" onclick="openPage('${_id}')" class="card-link">Open ${title}</a>
+            <button type="button" onclick="deleteNote('${_id}')" class="dltBtn btn btn-primary">Delete</button>
         </div>
-        `;
-  });
+    </div>
+`;
+    });
 
-  if (
-    localStorage.getItem("title") != null &&
-    localStorage.getItem("text") != null
-  ) {
     card.innerHTML = html;
-  } else if (
-    localStorage.getItem("title") == null &&
-    localStorage.getItem("text") == null
-  ) {
-    card.innerHTML = `<h1>No Notes Yet!</h1>`;
+  } catch (err) {
+    console.error(err);
+    card.innerHTML = `<h1>Error loading notes</h1>`;
   }
 }
 
-function openPage(new_element2) {
-  localStorage.setItem("element2", new_element2);
+// Call showDocs to display notes when the page loads
+window.onload = showDocs;
+
+
+function openPage(noteId) {
+  // Save the _id of the note in local storage
+  localStorage.setItem("noteId", noteId);
+
+  // Redirect to notes.html
+  window.location.href = "note.html";
 }
 
 function deleteNote(index) {
