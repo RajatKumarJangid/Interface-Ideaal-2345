@@ -18,7 +18,7 @@ docRouter.post('/', async(req,res) =>{
 
 docRouter.get('/', async(req,res) =>{
     try{
-        const doc =await DocModel.find( {userId: req.body.userId} );
+        const doc =await DocModel.find( );
         res.status(200).send({msg:'all doc',doc});
     }
     catch(err){
@@ -26,6 +26,16 @@ docRouter.get('/', async(req,res) =>{
         res.status(400).send({msg:"error in doc added",err});
     }
 });
+
+docRouter.get('/:id', async(req,res) =>{
+    const {id} = req.params
+    try{
+        const doc = await DocModel.findOne({_id: id});
+        res.status(200).send({msg: `The doc with id ${id} has been fetched`, doc});
+    }catch(err){
+        res.status(400).send({msg: err})
+    }
+})
 
 
 docRouter.patch('/:id', async(req,res) =>{

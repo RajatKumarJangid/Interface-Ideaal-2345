@@ -16,14 +16,26 @@ body {
   max-width: 400px;
 }
 
+#edi_con {
+  display: flex;
+  justify-content: center;
+}
+
 #editor {
-  /* width: 8.5in; */
+  width: 8.5in;
   min-height: 11in;
   padding: 1in;
   margin: 1rem;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   background-color: white;
+  /* margin-left: 350px; */
 }
+
+#fileName {
+  display: flex;
+  justify-content: center;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -93,7 +105,7 @@ body {
   width: 80px;
   height: 35px;
   border: 1px solid #ccc;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -124,7 +136,7 @@ body {
   bottom: 20px;
   right: 20px;
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -145,13 +157,13 @@ body {
 }
 
 .sent {
-  background-color: #4CAF50; /* Sent message color */
+  background-color: #4caf50; /* Sent message color */
   color: white;
   align-self: flex-end; /* Move sent messages to the right */
 }
 
 .received {
-  background-color: #0099FF; /* Received message color */
+  background-color: #0099ff; /* Received message color */
   color: white;
   align-self: flex-start; /* Move received messages to the left */
 }

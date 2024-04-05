@@ -10,6 +10,7 @@ const quill = new Quill("#editor", {
 
 quill.on("text-change", (delta, oldDelta, source) => {
   if (source !== "user") return;
+  localStorage.setItem("note", JSON.stringify(oldDelta));
   socket.emit("send-changes", delta);
 });
 
@@ -77,6 +78,8 @@ let saveBtn = document.getElementById("saveBtn");
 let saveAs = document.getElementById("saveAs");
 let editor = document.getElementById("editor");
 
+// editor.innerText = localStorage.getItem("token");
+
 sendBtn.addEventListener("click", () => {
   if (msgInput.value) {
     socket.emit("message", msgInput.value);
@@ -114,29 +117,79 @@ document
     }
   });
 
+// async function saveCode() {
+//   try {
+//     const obj = {
+//       filename: saveAs.value,
+//       editor: editor.value,
+//     };
+//     console.log(obj);
+
+//     const res = await fetch("https://localhost:8000/docs", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         authorization: `Bearer ${localStorage.getItem("token")}`,
+//       },
+//       body: JSON.stringify(obj),
+//     });
+//     const data = await res.json();
+//     console.log(data);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+saveBtn.addEventListener("click", () => {
+  saveCode(); // Call the saveCode function when the save button is clicked
+});
+
 async function saveCode() {
   try {
     const obj = {
-      filename: saveAs.value,
-      editor: editor.value,
+      title: saveAs.value,
+      content: quill.root.innerHTML, // Get Quill editor content
     };
-    console.log(obj);
 
-    const res = await fetch("https://localhost:8000/docs", {
+    const res = await fetch("http://localhost:4500/docs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(obj),
     });
+
     const data = await res.json();
     console.log(data);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
-saveBtn.addEventListener("click", () => {
-  console.log("quill: ", content);
-});
+const noteId = localStorage.getItem("noteId");
+
+if (noteId) {
+  fetch(`http://localhost:4500/docs/${noteId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const { doc } = data;
+      if (!doc) {
+        throw new Error('Document not found');
+      }
+
+      const { title, content } = doc;
+      saveAs.value = title;
+      quill.root.innerHTML = content;
+    })
+    .catch(error => {
+      console.error('Error fetching document:', error);
+    })
+    .finally(() => {
+      localStorage.removeItem("noteId");
+    });
+}
