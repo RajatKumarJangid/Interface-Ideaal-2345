@@ -31,9 +31,6 @@ Fullstack
 ## Video Walkthrough of the project
 - [https://drive.google.com/file/d/1uGs3oyRkSWipEnwbEbhK7i111IaV11BW/view?usp=drive_link]
 
-## Video Walkthrough of the codebase
-- Attach a very short video walkthough of codebase [ 1 - 5 minutes ]
-
 ## Features
 
 - Secure Authentication and Login Functionality: Implemented a secure login mechanism using password hashing.
