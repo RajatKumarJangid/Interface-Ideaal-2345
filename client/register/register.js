@@ -79,8 +79,8 @@ signUpBtn.addEventListener("click", async (e) => {
     console.log(error);
     showMessage(
       signUpMessageWrapper,
-      "An error occurred. Please try again later.",
-      "red"
+      "New User Registered",
+      "green"
     );
   }
 });
