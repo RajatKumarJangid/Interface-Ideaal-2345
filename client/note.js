@@ -1,4 +1,6 @@
-const socket = io("https://interface-ideaal-2345.onrender.com", { transports: ["websocket"] });
+const socket = io("https://interface-ideaal-2345.onrender.com", {
+  transports: ["websocket"],
+});
 const quill = new Quill("#editor", {
   modules: {
     syntax: true,
@@ -167,27 +169,30 @@ async function saveCode() {
 }
 
 const noteId = localStorage.getItem("noteId");
+console.log("noteId: ", noteId);
 
 if (noteId) {
-  fetch(`https://interface-ideaal-2345.onrender.com/docs/${noteId}`)
-    .then(response => {
+  fetch(`http://localhost:4500/docs/${noteId}`)
+    .then((response) => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
       return response.json();
     })
-    .then(data => {
+    .then((data) => {
       const { doc } = data;
+      console.log(doc);
       if (!doc) {
-        throw new Error('Document not found');
+        throw new Error("Document not found");
       }
 
       const { title, content } = doc;
+      console.log("some", title, content);
       saveAs.value = title;
       quill.root.innerHTML = content;
     })
-    .catch(error => {
-      console.error('Error fetching document:', error);
+    .catch((error) => {
+      console.error("Error fetching document:", error);
     })
     .finally(() => {
       localStorage.removeItem("noteId");
